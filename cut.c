@@ -12,7 +12,7 @@
 #define STOCK_CNT 5
 #define STOCK_LEN 400
 
-unsigned __int64 _k[ 14 ];
+unsigned long long int _k[ 14 ];
 
 static void print( int *x, int size ) {
 
@@ -33,6 +33,24 @@ static void print( int *x, int size ) {
     printf( "\n\n" );
 }
 
+static void print2( int *x, int size ) {
+
+    int n = 0, l = 0, i;
+
+    //printf( "0:" );
+
+    for ( i = 0; i < size; i++ ) {
+        if (( l + x[ i ] ) < STOCK_LEN ) {
+            l += x[ i ];
+            printf( " %3d", x[ i ] );
+        } else {
+            printf( ", %3d", x[ i ] );
+            l = x[ i ];
+        } /* endif */
+    } /* endfor */
+    printf( "\n" );
+}
+
 static int cut( int *x, int size ) {
 
     int n = 0, l = 0, i;
@@ -47,8 +65,8 @@ static int cut( int *x, int size ) {
     } /* endfor */
 
 if ( n == 4 ) {
-    print( x, size );
-    getch();
+    print2( x, size );
+    //getch();
 }
 
     return n;    
@@ -86,7 +104,8 @@ int main( int agrc, char *argv[] ) {
     perm( 0, 14, x );
 
     for ( i = 0; i < 14; i++ ) {
-        printf( "%2d %14I64u\n", i, _k[ i ] );
+        //printf( "%2d %14I64u\n", i, _k[ i ] );
+        printf( "%2d %14llu\n", i, _k[ i ] );
     } /* endfor */
     
     return 0;
